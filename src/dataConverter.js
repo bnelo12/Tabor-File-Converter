@@ -26,12 +26,9 @@ function convertLecroy(file, scalingFactor) {
       const min = Math.min(...data);
       const max = Math.max(...data) - min;
 
-      const normalised_data = data.map(value => Math.floor(scalingFactor*(value-min)/max*(Math.pow(2, 16)-1)));
-      const nearest_multiple = Math.floor(normalised_data.length / 64) * 64;
-      const clipped_data = normalised_data
-        .slice(0, nearest_multiple);      
+      const normalised_data = data.map(value => Math.floor(scalingFactor*(value-min)/max*(Math.pow(2, 16)-1)));    
     
-      resolve(clipped_data);
+      resolve(normalised_data);
     };
 
     reader.onerror = (error) => reject(error);
@@ -58,12 +55,9 @@ function convertTektronix(file, scalingFactor) {
       const min = Math.min(...data);
       const max = Math.max(...data) - min;
 
-      const normalised_data = data.map(value => Math.floor(scalingFactor*(value-min)/max*(Math.pow(2, 16)-1)));
-      const nearest_multiple = Math.floor(normalised_data.length / 64) * 64;
-      const clipped_data = normalised_data
-        .slice(0, nearest_multiple);     
+      const normalised_data = data.map(value => Math.floor(scalingFactor*(value-min)/max*(Math.pow(2, 16)-1)));    
         
-      resolve(clipped_data);
+      resolve(normalised_data);
     };
 
     reader.onerror = (error) => reject(error);

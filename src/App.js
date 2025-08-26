@@ -63,7 +63,12 @@ export default function App() {
       if (shouldInterpolateData) {
         result = linearInterpolate(result, 2);
       }
-      setDownloadlLink(createDownloadLink(result));
+
+      const nearest_multiple = Math.floor(result.length / 64) * 64;
+      const clipped_data = result
+        .slice(0, nearest_multiple); 
+
+      setDownloadlLink(createDownloadLink(clipped_data));
     });
   }, [file, shouldInterpolateData, selectedConverter, scalingFactor])
 
